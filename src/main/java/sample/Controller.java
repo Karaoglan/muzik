@@ -8,10 +8,10 @@ import org.apache.log4j.Logger;
 
 public class Controller {
 
-    final static Logger logger = Logger.getLogger(Controller.class);
+    private final static Logger logger = Logger.getLogger(Controller.class);
 
     @FXML
-    ImageView imageView;
+    private ImageView imageView;
 
     @FXML
     public void initialize() {
@@ -20,7 +20,7 @@ public class Controller {
 
     @FXML
     public void onClick() {
-        logger.info("sound check");
+        logger.info("sound check !");
     }
 
 }
