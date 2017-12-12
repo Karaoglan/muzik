@@ -8,24 +8,48 @@
     <artifactId>klasikMuzik</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <log4j.version>1.2.17</log4j.version>
+        <soundlibs.version>1.0.1-1</soundlibs.version>
+        <aspectj.version>1.8.7</aspectj.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.googlecode.soundlibs/jlayer -->
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>jlayer</artifactId>
-            <version>1.0.1-1</version>
+            <version>${soundlibs.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.jcabi</groupId>
+                <artifactId>jcabi-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>ajc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
