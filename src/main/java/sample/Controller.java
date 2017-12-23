@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.apache.log4j.Logger;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -119,7 +123,24 @@ public class Controller {
                 System.out.println("\n\n coordinates -> " + coordinates.toString() + "\n\n");
 
             } else {
-                System.out.println("names -> " + findImageNameFromPosition(e.getX(), e.getY()));
+                String fileName = findImageNameFromPosition(e.getX(), e.getY());
+                System.out.println("names -> " + fileName);
+                if (!fileName.isEmpty()) {
+                    try {
+                        String filePath = "src/main/resources/music/split/" + fileName;
+                        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
+                                new File(filePath));
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(audioInputStream);
+                        clip.loop(5);
+                        clip.start();
+                    } catch(Exception ex) {
+                        System.out.println("Error with playing sound.");
+                        ex.printStackTrace();
+                    }
+                }
+
+
             }
 
         });
